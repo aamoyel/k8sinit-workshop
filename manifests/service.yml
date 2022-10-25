@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: example
+  labels: &labels
+    app: example
+    part-of: example
+spec:
+  ports:
+  - name: http
+    port: 80
+    protocol: TCP
+    targetPort: PORTNAME
+  selector: *labels
+  type: ClusterIP

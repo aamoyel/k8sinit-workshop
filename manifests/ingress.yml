@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp-color-COLOR
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: 'COLOR.init.amoyel.fr'
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: SVC_NAME
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - 'COLOR.init.amoyel.fr'
+    secretName: webapp-color-COLOR-tls
